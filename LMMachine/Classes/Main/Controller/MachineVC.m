@@ -110,8 +110,6 @@
 
 - (void)setupMainUI {
     
-    self.search;
-    
     self.tabelViewTopC.constant = CGRectGetWidth(self.view.bounds) * 2 / 3;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"上传"

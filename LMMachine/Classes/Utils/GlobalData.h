@@ -10,6 +10,8 @@
 
 @interface GlobalData : NSObject
 
+@property (nonatomic, copy) NSString *companyKey;
+
 + (instancetype)sharedData;
 
 @end

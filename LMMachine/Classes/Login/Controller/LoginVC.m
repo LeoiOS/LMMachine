@@ -11,6 +11,7 @@
 #import "LCTool.h"
 #import "JGProgressHUD+LC.h"
 #import "CLProgressHUD+LC.h"
+#import "GlobalData.h"
 
 @interface LoginVC ()
 
@@ -48,7 +49,7 @@
     NSDictionary *params = @{@"userName" : self.userNameField.text,
                              @"pwd"      : self.pwdField.text};
     
-    self.loadingHUD = [CLProgressHUD showLoadingText:@"正在登录..." inView:self.view];
+    self.loadingHUD = [CLProgressHUD showLoadingText:@"正在登录中..." inView:self.view];
     
     [manager POST:LOGIN parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
@@ -64,6 +65,8 @@
             
             [self.loadingHUD dismissWithAnimation:YES];
             [JGProgressHUD showSuccessHUD:@"登录成功"];
+            
+            [GlobalData sharedData].companyKey = responseObject[@"data"][@"companyKey"];
         }
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
