@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <MAMapKit/MAMapKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface AppDelegate ()
 
@@ -21,6 +22,8 @@
     [self.window makeKeyAndVisible];
     
     [MAMapServices sharedServices].apiKey = MAP_KEY;
+    
+    [AMapSearchServices sharedServices].apiKey = MAP_KEY;
     
     return YES;
 }
