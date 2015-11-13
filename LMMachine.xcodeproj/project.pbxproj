@@ -10,6 +10,8 @@
 		79000ECDF9F0EF458480163B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F6DBF39E33E5F17C8C6BF3 /* libPods.a */; };
 		B28F45B31BF63B5B00A80F8B /* JGProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */; settings = {ASSET_TAGS = (); }; };
 		B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B41BF63BF200A80F8B /* MachineVC.m */; settings = {ASSET_TAGS = (); }; };
+		B28F45BB1BF641A200A80F8B /* CLProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */; settings = {ASSET_TAGS = (); }; };
+		B28F45BC1BF641A200A80F8B /* CLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		B32050AB1BF5EC250041C1C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050AA1BF5EC250041C1C8 /* main.m */; };
 		B32050B41BF5EC250041C1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050B21BF5EC250041C1C8 /* Main.storyboard */; };
 		B32050B61BF5EC250041C1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32050B51BF5EC250041C1C8 /* Assets.xcassets */; };
@@ -29,6 +31,10 @@
 		B28F45B11BF63B5B00A80F8B /* JGProgressHUD+LC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD+LC.h"; sourceTree = "<group>"; };
 		B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JGProgressHUD+LC.m"; sourceTree = "<group>"; };
 		B28F45B41BF63BF200A80F8B /* MachineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachineVC.m; sourceTree = "<group>"; };
+		B28F45B71BF641A200A80F8B /* CLProgressHUD+LC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLProgressHUD+LC.h"; sourceTree = "<group>"; };
+		B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLProgressHUD+LC.m"; sourceTree = "<group>"; };
+		B28F45B91BF641A200A80F8B /* CLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLProgressHUD.h; sourceTree = "<group>"; };
+		B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLProgressHUD.m; sourceTree = "<group>"; };
 		B32050A61BF5EC250041C1C8 /* LMMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32050AA1BF5EC250041C1C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B32050B31BF5EC250041C1C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -89,6 +95,17 @@
 			path = "JGProgressHUD+LC";
 			sourceTree = "<group>";
 		};
+		B28F45B61BF641A200A80F8B /* CLProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				B28F45B71BF641A200A80F8B /* CLProgressHUD+LC.h */,
+				B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */,
+				B28F45B91BF641A200A80F8B /* CLProgressHUD.h */,
+				B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */,
+			);
+			path = CLProgressHUD;
+			sourceTree = "<group>";
+		};
 		B320509D1BF5EC250041C1C8 = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +159,7 @@
 		B32050CC1BF5EC640041C1C8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B28F45B61BF641A200A80F8B /* CLProgressHUD */,
 				B28F45B01BF63B3500A80F8B /* JGProgressHUD+LC */,
 			);
 			path = Lib;
@@ -362,6 +380,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */,
+				B28F45BC1BF641A200A80F8B /* CLProgressHUD.m in Sources */,
+				B28F45BB1BF641A200A80F8B /* CLProgressHUD+LC.m in Sources */,
 				B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */,
 				B32050AB1BF5EC250041C1C8 /* main.m in Sources */,
 				B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */,

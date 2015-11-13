@@ -8,14 +8,16 @@
 
 #import "LoginVC.h"
 #import "AFNetworking.h"
-#import "LCProgressHUD.h"
 #import "LCTool.h"
 #import "JGProgressHUD+LC.h"
+#import "CLProgressHUD+LC.h"
 
 @interface LoginVC ()
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
+
+@property (nonatomic, weak) CLProgressHUD *loadingHUD;
 
 @end
 
@@ -46,7 +48,7 @@
     NSDictionary *params = @{@"userName" : self.userNameField.text,
                              @"pwd"      : self.pwdField.text};
     
-    [LCProgressHUD showLoading:@"请稍候..."];
+    self.loadingHUD = [CLProgressHUD showLoadingText:@"正在登录..." inView:self.view];
     
     [manager POST:LOGIN parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
@@ -60,6 +62,7 @@
             
             [UIApplication sharedApplication].keyWindow.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
             
+            [self.loadingHUD dismissWithAnimation:YES];
             [JGProgressHUD showSuccessHUD:@"登录成功"];
         }
         
@@ -67,6 +70,7 @@
         
         LCLog(@"%@", error);
         
+        [self.loadingHUD dismissWithAnimation:YES];
         [JGProgressHUD showFailureHUD:@"登录失败"];
     }];
 }
