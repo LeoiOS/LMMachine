@@ -8,6 +8,7 @@
 
 #import "MachineVC.h"
 #import <MAMapKit/MAMapKit.h>
+#import "LCProgressHUD.h"
 
 @interface MachineVC () <MAMapViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     
@@ -21,6 +22,15 @@
 
 @implementation MachineVC
 
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds) * 2 / 3)];
+    _mapView.delegate = self;
+    [self.view addSubview:_mapView];
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -32,11 +42,17 @@
 
 - (void)setupMainUI {
     
-    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds) * 2 / 3)];
-    _mapView.delegate = self;
-    [self.view addSubview:_mapView];
+    self.tabelViewTopC.constant = CGRectGetWidth(self.view.bounds) * 2 / 3 + 64;
     
-    self.tabelViewTopC.constant = CGRectGetMaxY(_mapView.frame);
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"上传"
+                                                                              style:UIBarButtonItemStyleDone
+                                                                             target:self
+                                                                             action:@selector(rightBtnClicked)];
+}
+
+- (void)rightBtnClicked {
+    
+    
 }
 
 #pragma mark - UITableView 代理
