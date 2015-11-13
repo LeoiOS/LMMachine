@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "LCProgressHUD.h"
 #import "LCTool.h"
+#import "JGProgressHUD+LC.h"
 
 @interface LoginVC ()
 
@@ -59,14 +60,14 @@
             
             [UIApplication sharedApplication].keyWindow.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
             
-            [LCProgressHUD showSuccess:@"登录成功"];
+            [JGProgressHUD showSuccessHUD:@"登录成功"];
         }
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         
         LCLog(@"%@", error);
         
-        [LCProgressHUD showInfoMsg:@"登录失败"];
+        [JGProgressHUD showFailureHUD:@"登录失败"];
     }];
 }
 

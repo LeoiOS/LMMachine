@@ -8,7 +8,6 @@
 
 #import "MachineVC.h"
 #import <MAMapKit/MAMapKit.h>
-#import "LCProgressHUD.h"
 
 @interface MachineVC () <MAMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -35,6 +34,8 @@
         _mapView.showsScale = NO;
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
         [_mapView setZoomLevel:16.1f animated:YES];
+        
+//        _mapView.centerCoordinate
     }
     
     return _mapView;
@@ -114,30 +115,9 @@
 
 #pragma mark - MAMapView 代理
 
-- (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
+- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     
-    if (updatingLocation) {
-        
-        // 取出当前位置的坐标
-        NSLog(@"latitude : %f, longitude: %f", userLocation.coordinate.latitude, userLocation.coordinate.longitude);
-    }
-}
-
-- (MAAnnotationView *)mapView:(MAMapView *)mapView viewForAnnotation:(id <MAAnnotation>)annotation {
-    
-    if ([annotation isKindOfClass:[MAPointAnnotation class]]) {
-        
-        static NSString *pointReuseIndentifier = @"pointReuseIndentifier";
-        MAPinAnnotationView *annotationView = (MAPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:pointReuseIndentifier];
-        if (!annotationView) {
-            annotationView = [[MAPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:pointReuseIndentifier];
-        }
-        annotationView.canShowCallout= YES; // 设置气泡可以弹出，默认为 NO
-        annotationView.draggable = YES;
-        annotationView.pinColor = MAPinAnnotationColorPurple;
-        return annotationView;
-    }
-    return nil;
+    LCLog(@"(%f, %f)", mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude);
 }
 
 @end
