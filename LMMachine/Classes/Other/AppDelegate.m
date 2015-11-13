@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <MAMapKit/MAMapKit.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [self.window makeKeyAndVisible];
+    
+    [MAMapServices sharedServices].apiKey = MAP_KEY;
     
     return YES;
 }

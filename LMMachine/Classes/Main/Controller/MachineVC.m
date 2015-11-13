@@ -7,31 +7,48 @@
 //
 
 #import "MachineVC.h"
+#import <MAMapKit/MAMapKit.h>
 
-@interface MachineVC ()
+@interface MachineVC () <MAMapViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+    
+    MAMapView *_mapView;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabelViewTopC;
 
 @end
 
 @implementation MachineVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"考勤机位置";
+    
+    [self setupMainUI];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)setupMainUI {
+    
+    _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, CGRectGetWidth(self.view.bounds), CGRectGetWidth(self.view.bounds) * 2 / 3)];
+    _mapView.delegate = self;
+    [self.view addSubview:_mapView];
+    
+    self.tabelViewTopC.constant = CGRectGetMaxY(_mapView.frame);
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - UITableView 代理
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return 0;
 }
-*/
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return nil;
+}
 
 @end

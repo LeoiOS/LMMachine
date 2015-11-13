@@ -14,6 +14,9 @@
 #import "CONST.h"
 
 
+// 高德地图 KEY
+#define MAP_KEY     @"19ab32be773b468c33d6c8bf368fb193"
+
 #define SCREEN_W    [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_H    [[UIScreen mainScreen] bounds].size.height
 

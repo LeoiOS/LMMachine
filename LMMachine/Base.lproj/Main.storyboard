@@ -15,7 +15,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="4sU-EN-bPS">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MachinesCell" id="4sU-EN-bPS">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4sU-EN-bPS" id="KbV-36-gJL">
@@ -51,9 +51,26 @@
                     <view key="view" contentMode="scaleToFill" id="ffG-dw-BPS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rv7-3S-0LP">
+                                <rect key="frame" x="0.0" y="260" width="600" height="340"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Rv7-3S-0LP" secondAttribute="trailing" id="H6X-mW-jIj"/>
+                            <constraint firstItem="Rv7-3S-0LP" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" id="Xfa-xz-RO5"/>
+                            <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="Rv7-3S-0LP" secondAttribute="bottom" id="cpg-jE-StO"/>
+                            <constraint firstItem="Rv7-3S-0LP" firstAttribute="top" secondItem="ffG-dw-BPS" secondAttribute="top" constant="260" id="mYz-FZ-1bm"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tabelViewTopC" destination="mYz-FZ-1bm" id="9Zx-Ea-umk"/>
+                        <outlet property="tableView" destination="Rv7-3S-0LP" id="HWu-iU-CKI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ee-kT-cBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
