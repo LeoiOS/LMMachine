@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AMap2DMap (3.1.0)
   - AMapSearch (3.0.1)
+  - JGProgressHUD (1.3.1)
   - LCProgressHUD (1.0.2):
     - MBProgressHUD (~> 0.9.1)
   - MBProgressHUD (0.9.1)
@@ -31,6 +32,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.0)
   - AMap2DMap
   - AMapSearch
+  - JGProgressHUD
   - LCProgressHUD
   - MJRefresh
 
@@ -38,6 +40,7 @@ SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   AMap2DMap: a6741139dd16d237713c4fd6cae9a0399ca1fe25
   AMapSearch: 431b082417bd3da0c2fe594c4822b664607891e9
+  JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
   LCProgressHUD: 504f1a7005d1289cc4c6d62107fb2846f8ccfed3
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
   MJRefresh: 85377dc8c70395cf329e102a5c55505ef387c2e1

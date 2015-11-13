@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		79000ECDF9F0EF458480163B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F6DBF39E33E5F17C8C6BF3 /* libPods.a */; };
+		B28F45B31BF63B5B00A80F8B /* JGProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */; settings = {ASSET_TAGS = (); }; };
+		B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B41BF63BF200A80F8B /* MachineVC.m */; settings = {ASSET_TAGS = (); }; };
 		B32050AB1BF5EC250041C1C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050AA1BF5EC250041C1C8 /* main.m */; };
 		B32050B41BF5EC250041C1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050B21BF5EC250041C1C8 /* Main.storyboard */; };
 		B32050B61BF5EC250041C1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32050B51BF5EC250041C1C8 /* Assets.xcassets */; };
@@ -18,13 +20,15 @@
 		B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E21BF5F39C0041C1C8 /* LCTool.m */; };
 		B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E51BF5F65E0041C1C8 /* GlobalData.m */; };
 		B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E81BF5F7530041C1C8 /* MachinesVC.m */; };
-		B32050EC1BF5F8F60041C1C8 /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050EB1BF5F8F60041C1C8 /* MachineVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2769D47D26155BF93F03BB6D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		55AF8CF8AEDA666016013AD1 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		86F6DBF39E33E5F17C8C6BF3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B28F45B11BF63B5B00A80F8B /* JGProgressHUD+LC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JGProgressHUD+LC.h"; sourceTree = "<group>"; };
+		B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JGProgressHUD+LC.m"; sourceTree = "<group>"; };
+		B28F45B41BF63BF200A80F8B /* MachineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachineVC.m; sourceTree = "<group>"; };
 		B32050A61BF5EC250041C1C8 /* LMMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32050AA1BF5EC250041C1C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B32050B31BF5EC250041C1C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,7 +49,6 @@
 		B32050E71BF5F7530041C1C8 /* MachinesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachinesVC.h; sourceTree = "<group>"; };
 		B32050E81BF5F7530041C1C8 /* MachinesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachinesVC.m; sourceTree = "<group>"; };
 		B32050EA1BF5F8F60041C1C8 /* MachineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachineVC.h; sourceTree = "<group>"; };
-		B32050EB1BF5F8F60041C1C8 /* MachineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachineVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,15 @@
 				86F6DBF39E33E5F17C8C6BF3 /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B28F45B01BF63B3500A80F8B /* JGProgressHUD+LC */ = {
+			isa = PBXGroup;
+			children = (
+				B28F45B11BF63B5B00A80F8B /* JGProgressHUD+LC.h */,
+				B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */,
+			);
+			path = "JGProgressHUD+LC";
 			sourceTree = "<group>";
 		};
 		B320509D1BF5EC250041C1C8 = {
@@ -130,6 +142,7 @@
 		B32050CC1BF5EC640041C1C8 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				B28F45B01BF63B3500A80F8B /* JGProgressHUD+LC */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -185,7 +198,7 @@
 				B32050E71BF5F7530041C1C8 /* MachinesVC.h */,
 				B32050E81BF5F7530041C1C8 /* MachinesVC.m */,
 				B32050EA1BF5F8F60041C1C8 /* MachineVC.h */,
-				B32050EB1BF5F8F60041C1C8 /* MachineVC.m */,
+				B28F45B41BF63BF200A80F8B /* MachineVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -350,10 +363,11 @@
 			files = (
 				B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */,
 				B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */,
-				B32050EC1BF5F8F60041C1C8 /* MachineVC.m in Sources */,
 				B32050AB1BF5EC250041C1C8 /* main.m in Sources */,
 				B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */,
+				B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */,
 				B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */,
+				B28F45B31BF63B5B00A80F8B /* JGProgressHUD+LC.m in Sources */,
 				B32050DF1BF5F10F0041C1C8 /* LoginVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
