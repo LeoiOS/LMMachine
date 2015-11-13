@@ -11,10 +11,11 @@
 
 @interface MachineVC () <MAMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic, strong) UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabelViewTopC;
+@property (nonatomic, strong) MAMapView *mapView;
+@property (nonatomic, strong) UIImageView *iconView;
+@property (nonatomic, assign) CLLocationCoordinate2D centerCoordinate;
 
 @end
 
@@ -116,6 +117,8 @@
 #pragma mark - MAMapView 代理
 
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    
+    self.centerCoordinate = mapView.centerCoordinate;
     
     LCLog(@"(%f, %f)", mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude);
 }
