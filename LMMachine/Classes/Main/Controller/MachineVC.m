@@ -13,7 +13,7 @@
 @interface MachineVC () <MAMapViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) MAMapView *mapView;
-@property (nonatomic,   weak) UIImageView *iconView;
+@property (nonatomic, strong) UIImageView *iconView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabelViewTopC;
 
@@ -51,14 +51,25 @@
         iconView.image = [UIImage imageNamed:@"myRedPin"];
         iconView.frame = CGRectMake(0, 0, 44.0f, 72.0f);
         iconView.center = CGPointMake(mapViewW * 0.5f, mapViewH * 0.5f + 64.0f);
+        _iconView = iconView;
     }
     
     return _iconView;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
+    
+    if (!self.mapView) {
+        
+        [self.view addSubview:self.mapView];
+    }
+    
+    if (!self.iconView) {
+        
+        [self.view addSubview:self.iconView];
+    }
 }
 
 - (void)viewDidLoad {

@@ -28,14 +28,18 @@
     return 1;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MachinesCell"];
     
-    cell.textLabel.text = @"考勤机 1";
+    cell.textLabel.text = @"旗舰考勤机";
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return 60.0f;
 }
 
 @end
