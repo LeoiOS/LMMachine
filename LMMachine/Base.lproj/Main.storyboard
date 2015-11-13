@@ -24,6 +24,9 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <segue destination="XMm-wG-JDf" kind="show" id="ecb-BK-J3l"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -36,6 +39,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZR-Gq-OSD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1476" y="288"/>
+        </scene>
+        <!--MachineVC-->
+        <scene sceneID="fFO-Hn-sAb">
+            <objects>
+                <viewController id="XMm-wG-JDf" customClass="MachineVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Km7-HT-pOa"/>
+                        <viewControllerLayoutGuide type="bottom" id="kcf-nX-k29"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ffG-dw-BPS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7ee-kT-cBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="288"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SdB-9i-vRP">

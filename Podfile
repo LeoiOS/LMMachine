@@ -1,2 +1,5 @@
 pod 'AFNetworking', '~> 2.0'
 pod 'LCProgressHUD'
+pod 'MJRefresh'
+pod 'AMap2DMap'
+pod 'AMapSearch'

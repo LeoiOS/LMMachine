@@ -18,6 +18,7 @@
 		B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E21BF5F39C0041C1C8 /* LCTool.m */; };
 		B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E51BF5F65E0041C1C8 /* GlobalData.m */; };
 		B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E81BF5F7530041C1C8 /* MachinesVC.m */; };
+		B32050EC1BF5F8F60041C1C8 /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050EB1BF5F8F60041C1C8 /* MachineVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,8 @@
 		B32050E51BF5F65E0041C1C8 /* GlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalData.m; sourceTree = "<group>"; };
 		B32050E71BF5F7530041C1C8 /* MachinesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachinesVC.h; sourceTree = "<group>"; };
 		B32050E81BF5F7530041C1C8 /* MachinesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachinesVC.m; sourceTree = "<group>"; };
+		B32050EA1BF5F8F60041C1C8 /* MachineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachineVC.h; sourceTree = "<group>"; };
+		B32050EB1BF5F8F60041C1C8 /* MachineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachineVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +184,8 @@
 			children = (
 				B32050E71BF5F7530041C1C8 /* MachinesVC.h */,
 				B32050E81BF5F7530041C1C8 /* MachinesVC.m */,
+				B32050EA1BF5F8F60041C1C8 /* MachineVC.h */,
+				B32050EB1BF5F8F60041C1C8 /* MachineVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 			files = (
 				B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */,
 				B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */,
+				B32050EC1BF5F8F60041C1C8 /* MachineVC.m in Sources */,
 				B32050AB1BF5EC250041C1C8 /* main.m in Sources */,
 				B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */,
 				B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */,
