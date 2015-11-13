@@ -13,6 +13,8 @@
 		B32050B61BF5EC250041C1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32050B51BF5EC250041C1C8 /* Assets.xcassets */; };
 		B32050B91BF5EC250041C1C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050B71BF5EC250041C1C8 /* LaunchScreen.storyboard */; };
 		B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050D71BF5EC640041C1C8 /* AppDelegate.m */; };
+		B32050DC1BF5F06F0041C1C8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050DB1BF5F06F0041C1C8 /* Login.storyboard */; };
+		B32050DF1BF5F10F0041C1C8 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050DE1BF5F10F0041C1C8 /* LoginVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,11 @@
 		B32050BA1BF5EC250041C1C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B32050D61BF5EC640041C1C8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B32050D71BF5EC640041C1C8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B32050D91BF5EE430041C1C8 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		B32050DA1BF5EF6E0041C1C8 /* CONST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CONST.h; sourceTree = "<group>"; };
+		B32050DB1BF5F06F0041C1C8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		B32050DD1BF5F10F0041C1C8 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		B32050DE1BF5F10F0041C1C8 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,10 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				B32050CB1BF5EC640041C1C8 /* Classes */,
-				B32050B21BF5EC250041C1C8 /* Main.storyboard */,
-				B32050B51BF5EC250041C1C8 /* Assets.xcassets */,
-				B32050B71BF5EC250041C1C8 /* LaunchScreen.storyboard */,
-				B32050BA1BF5EC250041C1C8 /* Info.plist */,
 				B32050A91BF5EC250041C1C8 /* Supporting Files */,
 			);
 			path = LMMachine;
@@ -92,7 +95,10 @@
 		B32050A91BF5EC250041C1C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B32050B51BF5EC250041C1C8 /* Assets.xcassets */,
+				B32050BA1BF5EC250041C1C8 /* Info.plist */,
 				B32050AA1BF5EC250041C1C8 /* main.m */,
+				B32050B71BF5EC250041C1C8 /* LaunchScreen.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -118,6 +124,7 @@
 		B32050CD1BF5EC640041C1C8 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B32050DB1BF5F06F0041C1C8 /* Login.storyboard */,
 				B32050CE1BF5EC640041C1C8 /* Controller */,
 				B32050CF1BF5EC640041C1C8 /* Model */,
 				B32050D01BF5EC640041C1C8 /* View */,
@@ -128,6 +135,8 @@
 		B32050CE1BF5EC640041C1C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B32050DD1BF5F10F0041C1C8 /* LoginVC.h */,
+				B32050DE1BF5F10F0041C1C8 /* LoginVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -149,6 +158,7 @@
 		B32050D11BF5EC640041C1C8 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B32050B21BF5EC250041C1C8 /* Main.storyboard */,
 				B32050D21BF5EC640041C1C8 /* Controller */,
 				B32050D31BF5EC640041C1C8 /* Model */,
 				B32050D41BF5EC640041C1C8 /* View */,
@@ -182,6 +192,8 @@
 			children = (
 				B32050D61BF5EC640041C1C8 /* AppDelegate.h */,
 				B32050D71BF5EC640041C1C8 /* AppDelegate.m */,
+				B32050D91BF5EE430041C1C8 /* PrefixHeader.pch */,
+				B32050DA1BF5EF6E0041C1C8 /* CONST.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -246,6 +258,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32050DC1BF5F06F0041C1C8 /* Login.storyboard in Resources */,
 				B32050B91BF5EC250041C1C8 /* LaunchScreen.storyboard in Resources */,
 				B32050B61BF5EC250041C1C8 /* Assets.xcassets in Resources */,
 				B32050B41BF5EC250041C1C8 /* Main.storyboard in Resources */,
@@ -309,6 +322,7 @@
 			files = (
 				B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */,
 				B32050AB1BF5EC250041C1C8 /* main.m in Sources */,
+				B32050DF1BF5F10F0041C1C8 /* LoginVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +335,7 @@
 				B32050B31BF5EC250041C1C8 /* Base */,
 			);
 			name = Main.storyboard;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		B32050B71BF5EC250041C1C8 /* LaunchScreen.storyboard */ = {
@@ -421,7 +436,9 @@
 			baseConfigurationReference = 2769D47D26155BF93F03BB6D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = LMMachine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leodong.LMMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -433,7 +450,9 @@
 			baseConfigurationReference = 55AF8CF8AEDA666016013AD1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = LMMachine/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leodong.LMMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
