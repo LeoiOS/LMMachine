@@ -12,6 +12,7 @@
 		B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B41BF63BF200A80F8B /* MachineVC.m */; settings = {ASSET_TAGS = (); }; };
 		B28F45BB1BF641A200A80F8B /* CLProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */; settings = {ASSET_TAGS = (); }; };
 		B28F45BC1BF641A200A80F8B /* CLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
+		B28F45BF1BF64E3E00A80F8B /* MachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BE1BF64E3E00A80F8B /* MachineModel.m */; settings = {ASSET_TAGS = (); }; };
 		B32050AB1BF5EC250041C1C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050AA1BF5EC250041C1C8 /* main.m */; };
 		B32050B41BF5EC250041C1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050B21BF5EC250041C1C8 /* Main.storyboard */; };
 		B32050B61BF5EC250041C1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32050B51BF5EC250041C1C8 /* Assets.xcassets */; };
@@ -35,6 +36,8 @@
 		B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLProgressHUD+LC.m"; sourceTree = "<group>"; };
 		B28F45B91BF641A200A80F8B /* CLProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLProgressHUD.h; sourceTree = "<group>"; };
 		B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLProgressHUD.m; sourceTree = "<group>"; };
+		B28F45BD1BF64E3E00A80F8B /* MachineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachineModel.h; sourceTree = "<group>"; };
+		B28F45BE1BF64E3E00A80F8B /* MachineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachineModel.m; sourceTree = "<group>"; };
 		B32050A61BF5EC250041C1C8 /* LMMachine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LMMachine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B32050AA1BF5EC250041C1C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B32050B31BF5EC250041C1C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -224,6 +227,8 @@
 		B32050D31BF5EC640041C1C8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B28F45BD1BF64E3E00A80F8B /* MachineModel.h */,
+				B28F45BE1BF64E3E00A80F8B /* MachineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				B32050AB1BF5EC250041C1C8 /* main.m in Sources */,
 				B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */,
 				B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */,
+				B28F45BF1BF64E3E00A80F8B /* MachineModel.m in Sources */,
 				B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */,
 				B28F45B31BF63B5B00A80F8B /* JGProgressHUD+LC.m in Sources */,
 				B32050DF1BF5F10F0041C1C8 /* LoginVC.m in Sources */,

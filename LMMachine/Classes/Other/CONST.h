@@ -39,6 +39,9 @@
 // 登录
 #define LOGIN   HOST @"/system/user/login"
 
+// 考勤机
+#define MACHINE HOST @"/system/company/machine"
+
 
 
 

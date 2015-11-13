@@ -110,6 +110,8 @@
 
 - (void)setupMainUI {
     
+    self.search;
+    
     self.tabelViewTopC.constant = CGRectGetWidth(self.view.bounds) * 2 / 3;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"上传"
@@ -165,7 +167,9 @@
     
     [self.locationArray removeAllObjects];
     
-    [self nearWithCoordinate:self.centerCoordinate];
+//    [self nearWithCoordinate:self.centerCoordinate];
+    
+    [self reGoecodeSearchWithCoordinate:self.centerCoordinate];
 }
 
 #pragma mark - AMapSearch 代理
@@ -191,9 +195,13 @@
     
     if (response.regeocode != nil) {
         
-        // 通过AMapReGeocodeSearchResponse对象处理搜索结果
-        NSString *result = [NSString stringWithFormat:@"ReGeocode: %@", response.regeocode.formattedAddress];
-        LCLog(@"ReGeo: %@", result);
+//        NSString *result = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@",
+//                            response.regeocode.formattedAddress,
+//                            response.regeocode.addressComponent,
+//                            response.regeocode.roads,
+//                            response.regeocode.roadinters,
+//                            response.regeocode.pois];
+//        LCLog(@"\n%@", result);
     }
 }
 
