@@ -15,6 +15,9 @@
 		B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050D71BF5EC640041C1C8 /* AppDelegate.m */; };
 		B32050DC1BF5F06F0041C1C8 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050DB1BF5F06F0041C1C8 /* Login.storyboard */; };
 		B32050DF1BF5F10F0041C1C8 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050DE1BF5F10F0041C1C8 /* LoginVC.m */; };
+		B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E21BF5F39C0041C1C8 /* LCTool.m */; };
+		B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E51BF5F65E0041C1C8 /* GlobalData.m */; };
+		B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050E81BF5F7530041C1C8 /* MachinesVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,12 @@
 		B32050DB1BF5F06F0041C1C8 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		B32050DD1BF5F10F0041C1C8 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		B32050DE1BF5F10F0041C1C8 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		B32050E11BF5F39C0041C1C8 /* LCTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCTool.h; sourceTree = "<group>"; };
+		B32050E21BF5F39C0041C1C8 /* LCTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTool.m; sourceTree = "<group>"; };
+		B32050E41BF5F65E0041C1C8 /* GlobalData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalData.h; sourceTree = "<group>"; };
+		B32050E51BF5F65E0041C1C8 /* GlobalData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalData.m; sourceTree = "<group>"; };
+		B32050E71BF5F7530041C1C8 /* MachinesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachinesVC.h; sourceTree = "<group>"; };
+		B32050E81BF5F7530041C1C8 /* MachinesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MachinesVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +115,7 @@
 		B32050CB1BF5EC640041C1C8 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B32050E01BF5F3800041C1C8 /* Utils */,
 				B32050CC1BF5EC640041C1C8 /* Lib */,
 				B32050CD1BF5EC640041C1C8 /* Login */,
 				B32050D11BF5EC640041C1C8 /* Main */,
@@ -169,6 +179,8 @@
 		B32050D21BF5EC640041C1C8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B32050E71BF5F7530041C1C8 /* MachinesVC.h */,
+				B32050E81BF5F7530041C1C8 /* MachinesVC.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -196,6 +208,17 @@
 				B32050DA1BF5EF6E0041C1C8 /* CONST.h */,
 			);
 			path = Other;
+			sourceTree = "<group>";
+		};
+		B32050E01BF5F3800041C1C8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B32050E11BF5F39C0041C1C8 /* LCTool.h */,
+				B32050E21BF5F39C0041C1C8 /* LCTool.m */,
+				B32050E41BF5F65E0041C1C8 /* GlobalData.h */,
+				B32050E51BF5F65E0041C1C8 /* GlobalData.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,8 +343,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B32050E31BF5F39C0041C1C8 /* LCTool.m in Sources */,
 				B32050D81BF5EC640041C1C8 /* AppDelegate.m in Sources */,
 				B32050AB1BF5EC250041C1C8 /* main.m in Sources */,
+				B32050E61BF5F65E0041C1C8 /* GlobalData.m in Sources */,
+				B32050E91BF5F7530041C1C8 /* MachinesVC.m in Sources */,
 				B32050DF1BF5F10F0041C1C8 /* LoginVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
