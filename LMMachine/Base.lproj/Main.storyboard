@@ -23,14 +23,14 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="H2k-KZ-GBB">
-                                            <rect key="frame" x="96" y="0.0" width="469" height="43.5"/>
+                                            <rect key="frame" x="74" y="0.0" width="491" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="machine" id="ZdZ-aE-nYi">
-                                            <rect key="frame" x="15" y="0.0" width="66" height="43.5"/>
+                                            <rect key="frame" x="15" y="0.0" width="44" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
@@ -65,22 +65,47 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rv7-3S-0LP">
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rv7-3S-0LP">
                                 <rect key="frame" x="0.0" y="260" width="600" height="340"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前位置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4Y-Cn-hzh">
+                                <rect key="frame" x="15" y="536" width="570" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="e9e-1X-rZI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="定位中..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fO9-3t-9NV">
+                                <rect key="frame" x="15" y="556" width="570" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="zEq-4m-ASt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="B4Y-Cn-hzh" secondAttribute="trailing" constant="15" id="0Uv-SH-dNz"/>
+                            <constraint firstAttribute="trailing" secondItem="fO9-3t-9NV" secondAttribute="trailing" constant="15" id="Fnr-Zc-Q6z"/>
                             <constraint firstAttribute="trailing" secondItem="Rv7-3S-0LP" secondAttribute="trailing" id="H6X-mW-jIj"/>
+                            <constraint firstItem="fO9-3t-9NV" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="NWB-s2-uqQ"/>
+                            <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="fO9-3t-9NV" secondAttribute="bottom" id="Wf4-IW-xl6"/>
                             <constraint firstItem="Rv7-3S-0LP" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" id="Xfa-xz-RO5"/>
+                            <constraint firstItem="fO9-3t-9NV" firstAttribute="top" secondItem="B4Y-Cn-hzh" secondAttribute="bottom" id="aTX-U9-mFY"/>
                             <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="Rv7-3S-0LP" secondAttribute="bottom" id="cpg-jE-StO"/>
+                            <constraint firstItem="B4Y-Cn-hzh" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="iUp-Vv-HAh"/>
                             <constraint firstItem="Rv7-3S-0LP" firstAttribute="top" secondItem="ffG-dw-BPS" secondAttribute="top" constant="260" id="mYz-FZ-1bm"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="locationLabel" destination="fO9-3t-9NV" id="jUe-1L-aiZ"/>
                         <outlet property="tabelViewTopC" destination="mYz-FZ-1bm" id="9Zx-Ea-umk"/>
                         <outlet property="tableView" destination="Rv7-3S-0LP" id="HWu-iU-CKI"/>
                     </connections>
@@ -108,6 +133,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="machine" width="102" height="67"/>
+        <image name="machine" width="67" height="67"/>
     </resources>
 </document>

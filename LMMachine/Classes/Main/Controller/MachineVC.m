@@ -9,9 +9,14 @@
 #import "MachineVC.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
+#import "LCTool.h"
+#import "AFNetworking.h"
+#import "CLProgressHUD+LC.h"
+#import "JGProgressHUD+LC.h"
 
 @interface MachineVC () <MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabelViewTopC;
 @property (nonatomic, strong) MAMapView *mapView;
@@ -19,6 +24,10 @@
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, assign) CLLocationCoordinate2D centerCoordinate;
 @property (nonatomic, strong) NSMutableArray *locationArray;
+/**
+ *  是否定位完成 默认正在定位
+ */
+@property (nonatomic, assign, getter=isLocationed) BOOL locationed;
 
 @end
 
@@ -29,7 +38,7 @@
     if (!_mapView) {
         
         CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
-        CGFloat mapViewH = mapViewW * 2 / 3;
+        CGFloat mapViewH = CGRectGetHeight(self.view.bounds) - 64.0f - 44.0f - 35.0f;
         
         _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, mapViewW, mapViewH)];
         _mapView.delegate = self;
@@ -59,7 +68,7 @@
     if (!_iconView) {
         
         CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
-        CGFloat mapViewH = mapViewW * 2 / 3;
+        CGFloat mapViewH = CGRectGetHeight(self.view.bounds) - 64.0f - 44.0f - 20.0f;
         
         UIImageView *iconView = [[UIImageView alloc] init];
         iconView.image = [UIImage imageNamed:@"myRedPin"];
@@ -110,7 +119,7 @@
 
 - (void)setupMainUI {
     
-    self.tabelViewTopC.constant = CGRectGetWidth(self.view.bounds) * 2 / 3;
+//    self.tabelViewTopC.constant = CGRectGetWidth(self.view.bounds) * 2 / 3;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"上传"
                                                                               style:UIBarButtonItemStyleDone
@@ -119,6 +128,16 @@
 }
 
 - (void)rightBtnClicked {
+    
+    if (!CLLocationCoordinate2DIsValid(self.centerCoordinate) || !self.isLocationed) {
+        
+        LCLog(@"\n<-- %f %d %d -->",
+              self.centerCoordinate.latitude,
+              !CLLocationCoordinate2DIsValid(self.centerCoordinate),
+              !self.isLocationed);
+        
+        return [LCTool showOneAlertViewWithTitle:@"请等待定位完成。" message:nil delegate:nil];
+    }
     
     
 }
@@ -157,13 +176,19 @@
 
 #pragma mark - MAMapView 代理
 
+- (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    
+    self.locationed = NO;
+    self.locationLabel.text = @"定位中...";
+}
+
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     
     self.centerCoordinate = mapView.centerCoordinate;
     
-    LCLog(@"(%f, %f)", mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude);
+//    LCLog(@"(%f, %f)", mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude);
     
-    [self.locationArray removeAllObjects];
+//    [self.locationArray removeAllObjects];
     
 //    [self nearWithCoordinate:self.centerCoordinate];
     
@@ -193,6 +218,9 @@
     
     if (response.regeocode != nil) {
         
+        self.locationed = YES;
+        self.locationLabel.text = response.regeocode.formattedAddress;
+        
 //        NSString *result = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@",
 //                            response.regeocode.formattedAddress,
 //                            response.regeocode.addressComponent,
@@ -200,6 +228,7 @@
 //                            response.regeocode.roadinters,
 //                            response.regeocode.pois];
 //        LCLog(@"\n%@", result);
+        
     }
 }
 

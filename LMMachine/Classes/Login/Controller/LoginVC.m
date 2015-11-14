@@ -38,7 +38,7 @@
     
     if (self.userNameField.text.length == 0 || self.pwdField.text.length == 0) {
         
-        [LCTool showOneAlertViewWithTitle:@"账号和密码不能为空" message:nil delegate:nil];
+        [LCTool showOneAlertViewWithTitle:@"账号和密码不能为空。" message:nil delegate:nil];
         
         return;
     }
