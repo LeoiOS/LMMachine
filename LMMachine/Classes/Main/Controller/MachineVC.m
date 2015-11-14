@@ -173,7 +173,7 @@
 - (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
     
     self.locationed = NO;
-    self.locationLabel.text = @"定位中...";
+//    self.locationLabel.text = @"定位中...";
 }
 
 - (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
