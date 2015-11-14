@@ -10,4 +10,6 @@
 
 @interface MachineVC : UIViewController
 
+@property (nonatomic, copy) NSString *machineId;
+
 @end

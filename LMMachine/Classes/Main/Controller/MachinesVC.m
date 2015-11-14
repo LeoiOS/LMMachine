@@ -14,6 +14,7 @@
 #import "JGProgressHUD+LC.h"
 #import "MachineModel.h"
 #import "LCTool.h"
+#import "MachineVC.h"
 
 @interface MachinesVC ()
 
@@ -82,6 +83,17 @@
     }];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"Machines2MachineSegue"]) {
+        
+        NSString *machineId = [(MachineModel *)sender machineId];
+        MachineVC *machineVC = segue.destinationViewController;
+        machineVC.title = machineId.length > 0 ? machineId : @"无 ID 考勤机";
+        machineVC.machineId = machineId;
+    }
+}
+
 #pragma mark - UITableView 代理
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -93,7 +105,8 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MachinesCell"];
     
-    cell.textLabel.text = [self.machines[indexPath.row] machineId];
+    NSString *machineId = [self.machines[indexPath.row] machineId];
+    cell.textLabel.text = machineId.length > 0 ? machineId : @"无 ID 考勤机";
     
     return cell;
 }
@@ -101,6 +114,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return 60.0f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self performSegueWithIdentifier:@"Machines2MachineSegue" sender:self.machines[indexPath.row]];
 }
 
 @end

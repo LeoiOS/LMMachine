@@ -13,6 +13,7 @@
 #import "AFNetworking.h"
 #import "CLProgressHUD+LC.h"
 #import "JGProgressHUD+LC.h"
+#import "GlobalData.h"
 
 @interface MachineVC () <MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -108,8 +109,6 @@
     
     [super viewDidLoad];
     
-    self.title = @"考勤机位置";
-    
     [self.view addSubview:self.mapView];
     
     [self.view addSubview:self.iconView];
@@ -131,15 +130,10 @@
     
     if (!CLLocationCoordinate2DIsValid(self.centerCoordinate) || !self.isLocationed) {
         
-        LCLog(@"\n<-- %f %d %d -->",
-              self.centerCoordinate.latitude,
-              !CLLocationCoordinate2DIsValid(self.centerCoordinate),
-              !self.isLocationed);
-        
         return [LCTool showOneAlertViewWithTitle:@"请等待定位完成。" message:nil delegate:nil];
     }
     
-    
+    LCLog(@"%@ %@ (%f, %f)", [GlobalData sharedData].companyKey, self.machineId, self.centerCoordinate.latitude, self.centerCoordinate.longitude);
 }
 
 - (void)nearWithCoordinate:(CLLocationCoordinate2D)coordinate {

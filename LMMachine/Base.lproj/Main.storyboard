@@ -37,9 +37,6 @@
                                     <animations/>
                                 </tableViewCellContentView>
                                 <animations/>
-                                <connections>
-                                    <segue destination="XMm-wG-JDf" kind="show" id="ecb-BK-J3l"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -48,6 +45,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="考勤机" id="zns-ka-En4"/>
+                    <connections>
+                        <segue destination="XMm-wG-JDf" kind="show" identifier="Machines2MachineSegue" id="0Sq-Cj-kSu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NZR-Gq-OSD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
