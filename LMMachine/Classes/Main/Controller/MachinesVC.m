@@ -9,22 +9,33 @@
 #import "MachinesVC.h"
 #import "AFNetworking.h"
 #import "MJRefresh.h"
+#import "MJExtension.h"
 #import "GlobalData.h"
 #import "JGProgressHUD+LC.h"
+#import "MachineModel.h"
+#import "LCTool.h"
 
 @interface MachinesVC ()
+
+@property (nonatomic, strong) NSArray *machines;
 
 @end
 
 @implementation MachinesVC
+
+- (NSArray *)machines {
+    
+    if (!_machines) {
+        _machines = [[NSArray alloc] init];
+    }
+    return _machines;
+}
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     
     [self setMainUI];
-    
-    [self loadRequest];
 }
 
 - (void)setMainUI {
@@ -47,6 +58,19 @@
         LCLog(@"%@", responseObject);
         
         [self.tableView.mj_header endRefreshing];
+        
+        if ([responseObject[@"status"][@"code"] intValue]) {
+            
+            [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
+            
+        } else {
+            
+            [JGProgressHUD showSuccessHUD:@"加载成功"];
+            
+            self.machines = [MachineModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]];
+            
+            [self.tableView reloadData];
+        }
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
         

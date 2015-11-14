@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		79000ECDF9F0EF458480163B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F6DBF39E33E5F17C8C6BF3 /* libPods.a */; };
-		B28F45B31BF63B5B00A80F8B /* JGProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */; settings = {ASSET_TAGS = (); }; };
-		B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B41BF63BF200A80F8B /* MachineVC.m */; settings = {ASSET_TAGS = (); }; };
-		B28F45BB1BF641A200A80F8B /* CLProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */; settings = {ASSET_TAGS = (); }; };
-		B28F45BC1BF641A200A80F8B /* CLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
-		B28F45BF1BF64E3E00A80F8B /* MachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BE1BF64E3E00A80F8B /* MachineModel.m */; settings = {ASSET_TAGS = (); }; };
+		B28F45B31BF63B5B00A80F8B /* JGProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B21BF63B5B00A80F8B /* JGProgressHUD+LC.m */; };
+		B28F45B51BF63BF200A80F8B /* MachineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B41BF63BF200A80F8B /* MachineVC.m */; };
+		B28F45BB1BF641A200A80F8B /* CLProgressHUD+LC.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45B81BF641A200A80F8B /* CLProgressHUD+LC.m */; };
+		B28F45BC1BF641A200A80F8B /* CLProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BA1BF641A200A80F8B /* CLProgressHUD.m */; };
+		B28F45BF1BF64E3E00A80F8B /* MachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B28F45BE1BF64E3E00A80F8B /* MachineModel.m */; };
 		B32050AB1BF5EC250041C1C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B32050AA1BF5EC250041C1C8 /* main.m */; };
 		B32050B41BF5EC250041C1C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B32050B21BF5EC250041C1C8 /* Main.storyboard */; };
 		B32050B61BF5EC250041C1C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B32050B51BF5EC250041C1C8 /* Assets.xcassets */; };
@@ -296,6 +296,7 @@
 				TargetAttributes = {
 					B32050A51BF5EC250041C1C8 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = 4BZ2VM448J;
 					};
 				};
 			};
@@ -508,12 +509,15 @@
 			baseConfigurationReference = 2769D47D26155BF93F03BB6D /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = LMMachine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leodong.LMMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -522,12 +526,15 @@
 			baseConfigurationReference = 55AF8CF8AEDA666016013AD1 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = LMMachine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.leodong.LMMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
