@@ -53,7 +53,7 @@
     
     [manager POST:LOGIN parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        LCLog(@"%@", responseObject);
+//        LCLog(@"%@", responseObject);
         
         if ([responseObject[@"status"][@"code"] intValue]) {
             

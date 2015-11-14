@@ -55,7 +55,7 @@
     
     [manager GET:MACHINE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        LCLog(@"%@", responseObject);
+//        LCLog(@"%@", responseObject);
         
         [self.tableView.mj_header endRefreshing];
         
@@ -86,14 +86,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return self.machines.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MachinesCell"];
     
-    cell.textLabel.text = @"旗舰考勤机";
+    cell.textLabel.text = [self.machines[indexPath.row] machineId];
     
     return cell;
 }
