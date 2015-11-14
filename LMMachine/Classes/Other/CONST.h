@@ -37,10 +37,13 @@
 
 
 // 登录
-#define LOGIN   HOST @"/system/user/login"
+#define LOGIN       HOST @"/system/user/login"
 
 // 考勤机
-#define MACHINE HOST @"/system/company/machine"
+#define MACHINE     HOST @"/system/update/company/machine"
+
+// 上传考勤机坐标
+#define COORDINATE  HOST @"/system/company/machine/coordinate"
 
 
 
