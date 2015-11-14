@@ -55,6 +55,8 @@
         
 //        LCLog(@"%@", responseObject);
         
+        [self.loadingHUD dismissWithAnimation:YES];
+        
         if ([responseObject[@"status"][@"code"] intValue]) {
             
             [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
@@ -63,7 +65,6 @@
             
             [UIApplication sharedApplication].keyWindow.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
             
-            [self.loadingHUD dismissWithAnimation:YES];
             [JGProgressHUD showSuccessHUD:@"登录成功"];
             
             [GlobalData sharedData].companyKey = responseObject[@"data"][@"companyKey"];
@@ -74,6 +75,7 @@
         LCLog(@"%@", error);
         
         [self.loadingHUD dismissWithAnimation:YES];
+        
         [JGProgressHUD showFailureHUD:@"登录失败"];
     }];
 }

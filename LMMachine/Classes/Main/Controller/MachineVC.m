@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, assign) CLLocationCoordinate2D centerCoordinate;
 @property (nonatomic, strong) NSMutableArray *locationArray;
+@property (nonatomic, strong) CLProgressHUD *loadingHUD;
 /**
  *  是否定位完成 默认正在定位
  */
@@ -134,6 +135,43 @@
     }
     
     LCLog(@"%@ %@ (%f, %f)", [GlobalData sharedData].companyKey, self.machineId, self.centerCoordinate.latitude, self.centerCoordinate.longitude);
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 10.0f;
+    
+    NSDictionary *params = @{@"companyKey" : [GlobalData sharedData].companyKey,
+                             @"machineId"  : self.machineId,
+                             @"pos"        : [NSString stringWithFormat:@"%f,%f",
+                                              self.centerCoordinate.longitude,
+                                              self.centerCoordinate.latitude]};
+    
+    self.loadingHUD = [CLProgressHUD showLoadingText:@"正在上传中..." inView:self.view];
+    
+    [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        
+        LCLog(@"%@", responseObject);
+        
+        [self.loadingHUD dismissWithAnimation:YES];
+        
+        if ([responseObject[@"status"][@"code"] intValue]) {
+            
+            [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
+            
+        } else {
+            
+            [JGProgressHUD showSuccessHUD:@"上传成功"];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+        LCLog(@"%@", error);
+        
+        [self.loadingHUD dismissWithAnimation:YES];
+        
+        [JGProgressHUD showFailureHUD:@"上传失败"];
+    }];
 }
 
 - (void)nearWithCoordinate:(CLLocationCoordinate2D)coordinate {
