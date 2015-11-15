@@ -16,7 +16,7 @@
 #import "LCTool.h"
 #import "MachineVC.h"
 
-@interface MachinesVC ()
+@interface MachinesVC () <UIAlertViewDelegate>
 
 @property (nonatomic, strong) NSArray *machines;
 
@@ -41,12 +41,22 @@
 
 - (void)setMainUI {
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销"
+                                                                             style:UIBarButtonItemStyleDone
+                                                                            target:self
+                                                                            action:@selector(leftBtnClicked)];
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self
                                                                 refreshingAction:@selector(loadRequest)];
     
     [self.tableView.mj_header beginRefreshing];
+}
+
+- (void)leftBtnClicked {
+    
+    [LCTool showTwoAlertViewWithTitle:@"你确定要注销吗？" message:nil delegate:self];
 }
 
 - (void)loadRequest {
@@ -93,6 +103,16 @@
         MachineVC *machineVC = segue.destinationViewController;
         machineVC.title = machineId.length > 0 ? machineId : @"无 ID 考勤机";
         machineVC.machineId = machineId;
+    }
+}
+
+#pragma mark - UIAlertView 代理
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = [UIStoryboard storyboardWithName:@"Login" bundle:nil].instantiateInitialViewController;
     }
 }
 

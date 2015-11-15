@@ -149,7 +149,7 @@
     
     [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        LCLog(@"%@", responseObject);
+//        LCLog(@"%@", responseObject);
         
         [self.loadingHUD dismissWithAnimation:YES];
         
