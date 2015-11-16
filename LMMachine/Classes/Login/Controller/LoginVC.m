@@ -28,10 +28,23 @@
     
     [super viewDidLoad];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关于"
+                                                                             style:UIBarButtonItemStyleDone
+                                                                            target:self
+                                                                            action:@selector(leftBtnClicked)];
+    
      self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录"
                                                                                style:UIBarButtonItemStyleDone
                                                                               target:self
                                                                               action:@selector(rightBtnClicked)];
+}
+
+- (void)leftBtnClicked {
+    
+    NSString *message = [NSString stringWithFormat:@"V%@(beta) build%@\n© 北京揽梦科技有限公司",
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
+    [LCTool showOneAlertViewWithTitle:@"关于" message:message delegate:nil];
 }
 
 - (void)rightBtnClicked {

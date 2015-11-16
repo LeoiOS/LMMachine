@@ -41,15 +41,15 @@
 
 - (void)setMainUI {
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关于"
                                                                              style:UIBarButtonItemStyleDone
                                                                             target:self
                                                                             action:@selector(leftBtnClicked)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关于"
-                                                                              style:UIBarButtonItemStyleDone
-                                                                             target:self
-                                                                             action:@selector(rightBtnClicked)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"注销"
+                                                                             style:UIBarButtonItemStyleDone
+                                                                            target:self
+                                                                            action:@selector(rightBtnClicked)];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
@@ -61,15 +61,15 @@
 
 - (void)leftBtnClicked {
     
-    [LCTool showTwoAlertViewWithTitle:@"你确定要注销吗？" message:nil delegate:self];
-}
-
-- (void)rightBtnClicked {
-    
     NSString *message = [NSString stringWithFormat:@"V%@(beta) build%@\n© 北京揽梦科技有限公司",
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
     [LCTool showOneAlertViewWithTitle:@"关于" message:message delegate:nil];
+}
+
+- (void)rightBtnClicked {
+    
+    [LCTool showTwoAlertViewWithTitle:@"你确定要注销吗？" message:nil delegate:self];
 }
 
 - (void)loadRequest {
