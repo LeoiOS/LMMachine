@@ -13,7 +13,7 @@
 #import "CLProgressHUD+LC.h"
 #import "GlobalData.h"
 
-@interface LoginVC ()
+@interface LoginVC () <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *userNameField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdField;
@@ -24,6 +24,24 @@
 
 @implementation LoginVC
 
+#pragma mark - UITextField 代理
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    if (textField == self.userNameField) {
+        
+        [self.pwdField becomeFirstResponder];
+        
+    } else if (textField == self.pwdField) {
+        
+        [self rightBtnClicked];
+    }
+    
+    return YES;
+}
+
+#pragma mark - Main Code
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -33,10 +51,17 @@
                                                                             target:self
                                                                             action:@selector(leftBtnClicked)];
     
-     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录"
-                                                                               style:UIBarButtonItemStyleDone
-                                                                              target:self
-                                                                              action:@selector(rightBtnClicked)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"登录"
+                                                                              style:UIBarButtonItemStyleDone
+                                                                             target:self
+                                                                             action:@selector(rightBtnClicked)];
+    
+    NSString *userName = [GlobalData sharedData].userName;
+    
+    if (userName.length > 0) {
+        
+        self.userNameField.text = userName;
+    }
 }
 
 - (void)leftBtnClicked {
@@ -57,6 +82,8 @@
         return;
     }
     
+    [self.view endEditing:YES];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer.timeoutInterval = 10.0f;
     
@@ -74,7 +101,7 @@
         if ([responseObject[@"status"][@"code"] intValue]) {
             
             [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
-             
+            
         } else {
             
             [UIApplication sharedApplication].keyWindow.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
@@ -82,6 +109,7 @@
             [JGProgressHUD showSuccessHUD:@"登录成功"];
             
             [GlobalData sharedData].companyKey = responseObject[@"data"][@"companyKey"];
+            [GlobalData sharedData].userName = self.userNameField.text;
         }
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
@@ -92,6 +120,11 @@
         
         [JGProgressHUD showFailureHUD:@"登录失败"];
     }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

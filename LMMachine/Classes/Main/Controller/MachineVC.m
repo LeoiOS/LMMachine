@@ -15,6 +15,10 @@
 #import "JGProgressHUD+LC.h"
 #import "GlobalData.h"
 
+// x lng
+// y lag
+typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
+
 @interface MachineVC () <MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
@@ -166,34 +170,79 @@
         return [LCTool showOneAlertViewWithTitle:@"请等待定位完成。" message:nil delegate:nil];
     }
     
+    
     LCLog(@"%@ %@ (%f, %f)", [GlobalData sharedData].companyKey, self.machineId, self.centerCoordinate.latitude, self.centerCoordinate.longitude);
+    
+    __weak typeof(self) weakSelf = self;
+    
+    [self convertCoordinate:self.centerCoordinate success:^(BOOL success, NSString *x, NSString *y) {
+        
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer.timeoutInterval = 10.0f;
+        
+        NSDictionary *params = @{@"companyKey" : [GlobalData sharedData].companyKey,
+                                 @"machineId"  : self.machineId,
+                                 @"pos"        : [NSString stringWithFormat:@"%@,%@", x, y]};
+        
+        [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            
+            LCLog(@"%@", responseObject);
+            
+            [self.loadingHUD dismissWithAnimation:YES];
+            
+            if ([responseObject[@"status"][@"code"] intValue]) {
+                
+                [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
+                
+            } else {
+                
+                [JGProgressHUD showSuccessHUD:@"上传成功"];
+                
+                [weakSelf.navigationController popViewControllerAnimated:YES];
+            }
+            
+        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+            
+            LCLog(@"%@", error);
+            
+            [self.loadingHUD dismissWithAnimation:YES];
+            
+            [JGProgressHUD showFailureHUD:@"上传失败"];
+        }];
+    }];
+}
+
+/**
+ *  地图转换体系转换 `GPS 设备` -> `百度坐标体系`
+ *  BDNMB
+ *
+ *  @param coordinate 坐标
+ *  @param success    成功 Block
+ */
+- (void)convertCoordinate:(CLLocationCoordinate2D)coordinate success:(ConvertBlock)success {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer.timeoutInterval = 10.0f;
     
-    NSDictionary *params = @{@"companyKey" : [GlobalData sharedData].companyKey,
-                             @"machineId"  : self.machineId,
-                             @"pos"        : [NSString stringWithFormat:@"%f,%f",
-                                              self.centerCoordinate.longitude,
-                                              self.centerCoordinate.latitude]};
-    
     self.loadingHUD = [CLProgressHUD showLoadingText:@"正在上传中..." inView:self.view];
     
-    [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+    NSString *urlStr = [NSString stringWithFormat:@"http://api.map.baidu.com/geoconv/v1/?coords=%f,%f&from=3&ak=Kibmiw44rTjERp8Gsfhfyw5h&output=json",
+                        coordinate.longitude,
+                        coordinate.latitude];
+    
+    [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
 //        LCLog(@"%@", responseObject);
         
-        [self.loadingHUD dismissWithAnimation:YES];
-        
-        if ([responseObject[@"status"][@"code"] intValue]) {
+        if (![responseObject[@"status"] intValue] && [responseObject[@"result"] count] > 0) {
             
-            [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
+            success(YES, responseObject[@"result"][0][@"x"], responseObject[@"result"][0][@"y"]);
             
         } else {
             
-            [JGProgressHUD showSuccessHUD:@"上传成功"];
+            [self.loadingHUD dismissWithAnimation:YES];
             
-            [self.navigationController popViewControllerAnimated:YES];
+            [LCTool showOneAlertViewWithTitle:@"上传失败" message:@"百度地图坐标转换接口失效，请联系揽梦科技。（http://www.lanmengkeji.com）" delegate:nil];
         }
         
     } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
@@ -202,7 +251,7 @@
         
         [self.loadingHUD dismissWithAnimation:YES];
         
-        [JGProgressHUD showFailureHUD:@"上传失败"];
+        [LCTool showOneAlertViewWithTitle:@"上传失败" message:@"百度地图坐标转换接口失效，请联系揽梦科技（http://www.lanmengkeji.com）。" delegate:nil];
     }];
 }
 
@@ -251,9 +300,9 @@
     self.centerCoordinate = mapView.centerCoordinate;
     
 //    LCLog(@"(%f, %f)", mapView.centerCoordinate.longitude, mapView.centerCoordinate.latitude);
-    
+//
 //    [self.locationArray removeAllObjects];
-    
+//
 //    [self nearWithCoordinate:self.centerCoordinate];
     
     [self reGoecodeSearchWithCoordinate:self.centerCoordinate];
