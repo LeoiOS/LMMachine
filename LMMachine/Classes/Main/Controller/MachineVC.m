@@ -182,7 +182,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         
         NSDictionary *params = @{@"companyKey" : [GlobalData sharedData].companyKey,
                                  @"machineId"  : self.machineId,
-                                 @"pos"        : [NSString stringWithFormat:@"%@,%@", x, y]};
+                                 @"pos"        : [NSString stringWithFormat:@"%@,%@", x, y],
+                                 @"machineAddr" : self.locationLabel.text};
         
         [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             
