@@ -35,6 +35,26 @@
 
 @implementation MachineVC
 
+#pragma mark - Utility
+
+- (void)clearMapView {
+    
+    if (self.mapView) {
+        
+        self.mapView.showsUserLocation = NO;
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self.mapView removeOverlays:self.mapView.overlays];
+        self.mapView.delegate = nil;
+    }
+}
+
+- (void)clearSearch {
+    
+    if (self.search) self.search.delegate = nil;
+}
+
+#pragma mark - Main Code
+
 - (MAMapView *)mapView {
     
     if (!_mapView) {
@@ -119,12 +139,24 @@
 
 - (void)setupMainUI {
     
-//    self.tabelViewTopC.constant = CGRectGetWidth(self.view.bounds) * 2 / 3;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消"
+                                                                             style:UIBarButtonItemStyleDone
+                                                                            target:self
+                                                                            action:@selector(leftBtnClicked)];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"上传"
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(rightBtnClicked)];
+}
+
+- (void)leftBtnClicked {
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+    [self clearMapView];
+    
+    [self clearSearch];
 }
 
 - (void)rightBtnClicked {
