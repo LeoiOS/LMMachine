@@ -61,7 +61,8 @@
 
 - (void)leftBtnClicked {
     
-    NSString *message = [NSString stringWithFormat:@"V%@(beta) build%@\n© 北京揽梦科技有限公司",
+    NSString *message = [NSString stringWithFormat:@"%@\nV%@(beta) build%@\n© 北京揽梦科技有限公司",
+                         [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"],
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
     [LCTool showOneAlertViewWithTitle:@"关于" message:message delegate:nil];
