@@ -171,45 +171,40 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     }
     
     
-    LCLog(@"%@ %@ (%f, %f)", [GlobalData sharedData].companyKey, self.machineId, self.centerCoordinate.latitude, self.centerCoordinate.longitude);
+    LCLog(@"%@ %@ (%f, %f)", [GlobalData sharedData].companyKey, self.machineId, self.centerCoordinate.longitude, self.centerCoordinate.latitude);
     
-    __weak typeof(self) weakSelf = self;
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.timeoutInterval = 10.0f;
     
-    [self convertCoordinate:self.centerCoordinate success:^(BOOL success, NSString *x, NSString *y) {
+    NSDictionary *params = @{@"companyKey"  : [GlobalData sharedData].companyKey,
+                             @"machineId"   : self.machineId,
+                             @"pos"         : [NSString stringWithFormat:@"%f,%f", self.centerCoordinate.longitude, self.centerCoordinate.latitude],
+                             @"machineAddr" : self.locationLabel.text};
+    
+    [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
         
-        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-        manager.requestSerializer.timeoutInterval = 10.0f;
+        LCLog(@"%@", responseObject);
         
-        NSDictionary *params = @{@"companyKey" : [GlobalData sharedData].companyKey,
-                                 @"machineId"  : self.machineId,
-                                 @"pos"        : [NSString stringWithFormat:@"%@,%@", x, y],
-                                 @"machineAddr" : self.locationLabel.text};
+        [self.loadingHUD dismissWithAnimation:YES];
         
-        [manager GET:COORDINATE parameters:params success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        if ([responseObject[@"status"][@"code"] intValue]) {
             
-            LCLog(@"%@", responseObject);
+            [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
             
-            [self.loadingHUD dismissWithAnimation:YES];
+        } else {
             
-            if ([responseObject[@"status"][@"code"] intValue]) {
-                
-                [LCTool showOneAlertViewWithTitle:responseObject[@"status"][@"msg"] message:nil delegate:nil];
-                
-            } else {
-                
-                [JGProgressHUD showSuccessHUD:@"上传成功"];
-                
-                [weakSelf.navigationController popViewControllerAnimated:YES];
-            }
+            [JGProgressHUD showSuccessHUD:@"上传成功"];
             
-        } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
-            
-            LCLog(@"%@", error);
-            
-            [self.loadingHUD dismissWithAnimation:YES];
-            
-            [JGProgressHUD showFailureHUD:@"上传失败"];
-        }];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        
+    } failure:^(AFHTTPRequestOperation * _Nullable operation, NSError * _Nonnull error) {
+        
+        LCLog(@"%@", error);
+        
+        [self.loadingHUD dismissWithAnimation:YES];
+        
+        [JGProgressHUD showFailureHUD:@"上传失败"];
     }];
 }
 
