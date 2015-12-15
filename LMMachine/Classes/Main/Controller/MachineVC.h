@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) NSString *machineId;
 
+@property (nonatomic, assign) long distance;
+
 @end

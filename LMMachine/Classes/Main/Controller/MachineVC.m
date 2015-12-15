@@ -34,6 +34,10 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
  */
 @property (nonatomic, assign, getter=isLocationed) BOOL locationed;
 
+@property (nonatomic, strong) NSArray *dataArray;
+
+@property (nonatomic, copy) NSString *locationCN;
+
 @end
 
 @implementation MachineVC
@@ -112,6 +116,12 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         _locationArray = [[NSMutableArray alloc] init];
     }
     return _locationArray;
+}
+
+- (NSArray *)dataArray {
+    
+    return @[[NSString stringWithFormat:@"%@", self.locationCN],
+             [NSString stringWithFormat:@"%ld", self.distance]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -299,6 +309,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     ? UITableViewCellAccessoryDisclosureIndicator
     : UITableViewCellAccessoryNone;
     
+    cell.textLabel.text = self.dataArray[indexPath.section];
+    
     return cell;
 }
 
@@ -371,7 +383,10 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     if (response.regeocode != nil) {
         
         self.locationed = YES;
-        self.locationLabel.text = response.regeocode.formattedAddress;
+        self.locationCN = response.regeocode.formattedAddress;
+        self.locationLabel.text = self.locationCN;
+        
+        [self.tableView reloadData];
         
 //        NSString *result = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\n%@",
 //                            response.regeocode.formattedAddress,
