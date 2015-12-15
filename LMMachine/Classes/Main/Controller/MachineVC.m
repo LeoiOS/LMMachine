@@ -23,7 +23,6 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tabelViewTopC;
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *search;
 @property (nonatomic, strong) UIImageView *iconView;
@@ -64,7 +63,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     if (!_mapView) {
         
         CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
-        CGFloat mapViewH = CGRectGetHeight(self.view.bounds) - 64.0f - 44.0f - 35.0f;
+        CGFloat mapViewH = 320.0f;
         
         _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, mapViewW, mapViewH)];
         _mapView.delegate = self;
@@ -94,7 +93,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     if (!_iconView) {
         
         CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
-        CGFloat mapViewH = CGRectGetHeight(self.view.bounds) - 64.0f - 44.0f - 20.0f;
+        CGFloat mapViewH = 320.0f;
         
         UIImageView *iconView = [[UIImageView alloc] init];
         iconView.image = [UIImage imageNamed:@"myRedPin"];
@@ -275,14 +274,56 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 
 #pragma mark - UITableView 代理
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    return 2;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 0;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    static NSString *ID = @"MachineCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+    }
+    
+    cell.textLabel.numberOfLines = 2;
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+    cell.accessoryType =
+    indexPath.section == 1
+    ? UITableViewCellAccessoryDisclosureIndicator
+    : UITableViewCellAccessoryNone;
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if (section == 0) {
+        
+        return @"当前位置";
+        
+    } else if (section == 1) {
+        
+        return @"设置考勤机有效距离";
+    }
+    
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    
+    return 36.0f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    
+    return 10.0f;
 }
 
 #pragma mark - MAMapView 代理

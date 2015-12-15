@@ -80,19 +80,33 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="7TW-Ko-Ozy">
+                                <rect key="frame" x="0.0" y="384" width="600" height="216"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="XMm-wG-JDf" id="24r-iU-eab"/>
+                                    <outlet property="delegate" destination="XMm-wG-JDf" id="Ie6-4v-YPn"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="B4Y-Cn-hzh" secondAttribute="trailing" constant="15" id="0Uv-SH-dNz"/>
                             <constraint firstAttribute="trailing" secondItem="fO9-3t-9NV" secondAttribute="trailing" constant="15" id="Fnr-Zc-Q6z"/>
+                            <constraint firstItem="7TW-Ko-Ozy" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" id="GyI-kQ-Vig"/>
+                            <constraint firstAttribute="trailing" secondItem="7TW-Ko-Ozy" secondAttribute="trailing" id="MBU-4O-ttd"/>
                             <constraint firstItem="fO9-3t-9NV" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="NWB-s2-uqQ"/>
                             <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="fO9-3t-9NV" secondAttribute="bottom" id="Wf4-IW-xl6"/>
                             <constraint firstItem="fO9-3t-9NV" firstAttribute="top" secondItem="B4Y-Cn-hzh" secondAttribute="bottom" constant="2" id="aTX-U9-mFY"/>
                             <constraint firstItem="B4Y-Cn-hzh" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="iUp-Vv-HAh"/>
+                            <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="7TW-Ko-Ozy" secondAttribute="bottom" id="nnK-25-G5C"/>
+                            <constraint firstItem="7TW-Ko-Ozy" firstAttribute="top" secondItem="ffG-dw-BPS" secondAttribute="top" constant="384" id="rhu-zB-PA8"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="locationLabel" destination="fO9-3t-9NV" id="jUe-1L-aiZ"/>
+                        <outlet property="tableView" destination="7TW-Ko-Ozy" id="QJs-DB-rak"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ee-kT-cBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
