@@ -89,10 +89,23 @@
                                     <outlet property="delegate" destination="XMm-wG-JDf" id="Ie6-4v-YPn"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e6Q-gy-nJJ">
+                                <rect key="frame" x="15" y="336" width="33" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="DIS-jm-Nkd"/>
+                                    <constraint firstAttribute="width" constant="33" id="pnx-Rr-4ug"/>
+                                </constraints>
+                                <state key="normal" image="location"/>
+                                <state key="highlighted" image="location_sel"/>
+                                <connections>
+                                    <action selector="backLocationBtnClicked" destination="XMm-wG-JDf" eventType="touchUpInside" id="zzk-Sv-KZy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="B4Y-Cn-hzh" secondAttribute="trailing" constant="15" id="0Uv-SH-dNz"/>
+                            <constraint firstItem="e6Q-gy-nJJ" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="4LQ-ch-fRa"/>
                             <constraint firstAttribute="trailing" secondItem="fO9-3t-9NV" secondAttribute="trailing" constant="15" id="Fnr-Zc-Q6z"/>
                             <constraint firstItem="7TW-Ko-Ozy" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" id="GyI-kQ-Vig"/>
                             <constraint firstAttribute="trailing" secondItem="7TW-Ko-Ozy" secondAttribute="trailing" id="MBU-4O-ttd"/>
@@ -100,11 +113,13 @@
                             <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="fO9-3t-9NV" secondAttribute="bottom" id="Wf4-IW-xl6"/>
                             <constraint firstItem="fO9-3t-9NV" firstAttribute="top" secondItem="B4Y-Cn-hzh" secondAttribute="bottom" constant="2" id="aTX-U9-mFY"/>
                             <constraint firstItem="B4Y-Cn-hzh" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="iUp-Vv-HAh"/>
+                            <constraint firstItem="7TW-Ko-Ozy" firstAttribute="top" secondItem="e6Q-gy-nJJ" secondAttribute="bottom" constant="15" id="lbG-aU-HrE"/>
                             <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="7TW-Ko-Ozy" secondAttribute="bottom" id="nnK-25-G5C"/>
                             <constraint firstItem="7TW-Ko-Ozy" firstAttribute="top" secondItem="ffG-dw-BPS" secondAttribute="top" constant="384" id="rhu-zB-PA8"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backLocationBtn" destination="e6Q-gy-nJJ" id="27p-ZK-nmH"/>
                         <outlet property="locationLabel" destination="fO9-3t-9NV" id="jUe-1L-aiZ"/>
                         <outlet property="tableView" destination="7TW-Ko-Ozy" id="QJs-DB-rak"/>
                     </connections>
@@ -131,6 +146,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location" width="33" height="33"/>
+        <image name="location_sel" width="33" height="33"/>
         <image name="machine" width="57" height="65"/>
     </resources>
 </document>

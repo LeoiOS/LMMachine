@@ -22,6 +22,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 @interface MachineVC () <MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UIButton *backLocationBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) MAMapView *mapView;
 @property (nonatomic, strong) AMapSearchAPI *search;
@@ -74,6 +75,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         _mapView.showsUserLocation = YES;
         _mapView.showsCompass = NO;
         _mapView.showsScale = NO;
+        _mapView.logoCenter = CGPointMake(CGRectGetWidth(_mapView.bounds) - 36.0f, 310.0f);
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
         [_mapView setZoomLevel:16.1f animated:YES];
     }
@@ -131,6 +133,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     if (!self.mapView) {
         
         [self.view addSubview:self.mapView];
+        
+        [self.view bringSubviewToFront:self.backLocationBtn];
     }
     
     if (!self.iconView) {
@@ -144,6 +148,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     [super viewDidLoad];
     
     [self.view addSubview:self.mapView];
+    
+    [self.view bringSubviewToFront:self.backLocationBtn];
     
     [self.view addSubview:self.iconView];
     
@@ -161,6 +167,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(rightBtnClicked)];
+}
+- (IBAction)backLocationBtnClicked {
 }
 
 - (void)leftBtnClicked {
