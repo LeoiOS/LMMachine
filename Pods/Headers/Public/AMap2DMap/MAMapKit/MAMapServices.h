@@ -1,1 +1,1 @@
-../../../../AMap2DMap/MAMapKit.framework/Versions/3.1.0.56231a5/Headers/MAMapServices.h
+../../../../AMap2DMap/MAMapKit.framework/Versions/3.2.0.163b642/Headers/MAMapServices.h

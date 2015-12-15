@@ -41,7 +41,7 @@
 
 - (void)setMainUI {
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关于"
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"帮助"
                                                                              style:UIBarButtonItemStyleDone
                                                                             target:self
                                                                             action:@selector(leftBtnClicked)];
@@ -61,11 +61,11 @@
 
 - (void)leftBtnClicked {
     
-    NSString *message = [NSString stringWithFormat:@"%@\nV%@(beta) build%@\n© 北京揽梦科技有限公司",
+    NSString *message = [NSString stringWithFormat:@"%@\n当前版本为内测版本，可能存在一些 Bug。如有遇到，请摇一摇进行反馈！谢谢！\nV%@(beta) build%@\n© 北京揽梦科技有限公司",
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"],
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                          [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];
-    [LCTool showOneAlertViewWithTitle:@"关于" message:message delegate:nil];
+    [LCTool showOneAlertViewWithTitle:@"帮助" message:message delegate:nil];
 }
 
 - (void)rightBtnClicked {

@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import <MAMapKit/MAMapKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
+#import <PgySDK/PgyManager.h>
+#import <PgyUpdate/PgyUpdateManager.h>
 
 @interface AppDelegate ()
 
@@ -24,6 +26,12 @@
     [MAMapServices sharedServices].apiKey = MAP_KEY;
     
     [AMapSearchServices sharedServices].apiKey = MAP_KEY;
+    
+    [[PgyManager sharedPgyManager] startManagerWithAppId:PGY_KEY];
+    
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:PGY_KEY];
+    
+    [[PgyUpdateManager sharedPgyManager] checkUpdate];
     
     return YES;
 }

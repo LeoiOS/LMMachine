@@ -170,6 +170,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         return [LCTool showOneAlertViewWithTitle:@"请等待定位完成。" message:nil delegate:nil];
     }
     
+    self.loadingHUD = [CLProgressHUD showLoadingText:@"正在上传中..." inView:self.view];
+    
     
     LCLog(@"%@ %@ (%f, %f)", [GlobalData sharedData].companyKey, self.machineId, self.centerCoordinate.longitude, self.centerCoordinate.latitude);
     
