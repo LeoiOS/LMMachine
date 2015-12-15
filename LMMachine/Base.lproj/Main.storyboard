@@ -62,10 +62,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rv7-3S-0LP">
-                                <rect key="frame" x="0.0" y="260" width="600" height="340"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前位置" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4Y-Cn-hzh">
                                 <rect key="frame" x="15" y="534" width="570" height="20"/>
                                 <constraints>
@@ -89,20 +85,14 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="B4Y-Cn-hzh" secondAttribute="trailing" constant="15" id="0Uv-SH-dNz"/>
                             <constraint firstAttribute="trailing" secondItem="fO9-3t-9NV" secondAttribute="trailing" constant="15" id="Fnr-Zc-Q6z"/>
-                            <constraint firstAttribute="trailing" secondItem="Rv7-3S-0LP" secondAttribute="trailing" id="H6X-mW-jIj"/>
                             <constraint firstItem="fO9-3t-9NV" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="NWB-s2-uqQ"/>
                             <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="fO9-3t-9NV" secondAttribute="bottom" id="Wf4-IW-xl6"/>
-                            <constraint firstItem="Rv7-3S-0LP" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" id="Xfa-xz-RO5"/>
                             <constraint firstItem="fO9-3t-9NV" firstAttribute="top" secondItem="B4Y-Cn-hzh" secondAttribute="bottom" constant="2" id="aTX-U9-mFY"/>
-                            <constraint firstItem="kcf-nX-k29" firstAttribute="top" secondItem="Rv7-3S-0LP" secondAttribute="bottom" id="cpg-jE-StO"/>
                             <constraint firstItem="B4Y-Cn-hzh" firstAttribute="leading" secondItem="ffG-dw-BPS" secondAttribute="leading" constant="15" id="iUp-Vv-HAh"/>
-                            <constraint firstItem="Rv7-3S-0LP" firstAttribute="top" secondItem="ffG-dw-BPS" secondAttribute="top" constant="260" id="mYz-FZ-1bm"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="locationLabel" destination="fO9-3t-9NV" id="jUe-1L-aiZ"/>
-                        <outlet property="tabelViewTopC" destination="mYz-FZ-1bm" id="9Zx-Ea-umk"/>
-                        <outlet property="tableView" destination="Rv7-3S-0LP" id="HWu-iU-CKI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ee-kT-cBK" userLabel="First Responder" sceneMemberID="firstResponder"/>
