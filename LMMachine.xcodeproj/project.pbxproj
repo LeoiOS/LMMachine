@@ -296,7 +296,7 @@
 				TargetAttributes = {
 					B32050A51BF5EC250041C1C8 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 4BZ2VM448J;
+						DevelopmentTeam = 6Z3ASH6V7S;
 					};
 				};
 			};
@@ -516,7 +516,7 @@
 				INFOPLIST_FILE = LMMachine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.leodev.LMMachine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lanmengkeji.LMMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -534,7 +534,7 @@
 				INFOPLIST_FILE = LMMachine/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = me.leodev.LMMachine;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lanmengkeji.LMMachine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
