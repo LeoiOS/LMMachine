@@ -117,6 +117,7 @@
         MachineVC *machineVC = segue.destinationViewController;
         machineVC.title = machineId.length > 0 ? machineId : @"无 ID 考勤机";
         machineVC.machineId = machineId;
+        machineVC.distance = [[(MachineModel *)sender machineDistance] longLongValue];
     }
 }
 
