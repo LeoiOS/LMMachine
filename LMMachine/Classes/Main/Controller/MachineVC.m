@@ -15,6 +15,7 @@
 #import "JGProgressHUD+LC.h"
 #import "GlobalData.h"
 
+#define MAP_VIEW_WIDTH  CGRectGetWidth(self.view.bounds)
 #define MAP_VIEW_HEIGHT (320.0f * (SCREEN_H - 64.0f) / 603.0f)
 
 // x lng
@@ -36,11 +37,18 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 /**
  *  是否定位完成 默认正在定位
  */
-@property (nonatomic, assign, getter=isLocationed) BOOL locationed;
+@property (nonatomic, assign, getter = isLocationed) BOOL locationed;
 
-@property (nonatomic, strong) NSArray *dataArray;
+@property (nonatomic, assign) BOOL        isFirstLocated;
 
-@property (nonatomic, copy) NSString *locationCN;
+@property (nonatomic, strong) NSArray     *dataArray;
+
+@property (nonatomic, copy  ) NSString    *locationCN;
+
+@property (nonatomic, strong) UIImageView *redWaterView;
+@property (nonatomic, strong) UIButton    *locationBtn;
+@property (nonatomic, strong) UIImage     *imageLocated;
+@property (nonatomic, strong) UIImage     *imageNotLocate;
 
 @end
 
@@ -70,7 +78,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     
     if (!_mapView) {
         
-        CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
+        CGFloat mapViewW = MAP_VIEW_WIDTH;
         CGFloat mapViewH = MAP_VIEW_HEIGHT;
         
         _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, mapViewW, mapViewH)];
@@ -80,7 +88,11 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         _mapView.showsScale = NO;
         _mapView.logoCenter = CGPointMake(CGRectGetWidth(_mapView.bounds) - 36.0f, 310.0f);
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
-        [_mapView setZoomLevel:16.1f animated:YES];
+        [_mapView setZoomLevel:16.5f animated:YES];
+        
+        MAUserLocationRepresentation *userLR = [[MAUserLocationRepresentation alloc] init];
+        userLR.showsAccuracyRing = NO;
+        [_mapView updateUserLocationRepresentation:userLR];
     }
     
     return _mapView;
@@ -101,7 +113,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     
     if (!_iconView) {
         
-        CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
+        CGFloat mapViewW = MAP_VIEW_WIDTH;
         CGFloat mapViewH = MAP_VIEW_HEIGHT;
         
         UIImageView *iconView = [[UIImageView alloc] init];
@@ -112,6 +124,63 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     }
     
     return _iconView;
+}
+
+- (void)initRedWaterView {
+    
+    UIImage *image = [UIImage imageNamed:@"wateRedBlank"];
+    self.redWaterView = [[UIImageView alloc] initWithImage:image];
+    
+    self.redWaterView.frame = CGRectMake(self.view.bounds.size.width * 0.5f - image.size.width * 0.5f,
+                                         MAP_VIEW_HEIGHT * 0.5f - image.size.height + 64.0f,
+                                         image.size.width,
+                                         image.size.height);
+    
+    self.redWaterView.center = CGPointMake(CGRectGetWidth(self.view.bounds) * 0.5f,
+                                           MAP_VIEW_HEIGHT * 0.5f + 64.0f - CGRectGetHeight(self.redWaterView.bounds) * 0.5f);
+    
+    [self.view addSubview:self.redWaterView];
+}
+
+- (void)initLocationButton {
+    
+    self.imageLocated = [UIImage imageNamed:@"gpssearchbutton"];
+    self.imageNotLocate = [UIImage imageNamed:@"gpsnormal"];
+    
+    self.locationBtn = [[UIButton alloc] init];
+    self.locationBtn.frame = CGRectMake(MAP_VIEW_WIDTH * 0.07f,
+                                        MAP_VIEW_HEIGHT * 0.8f + 64.0f,
+                                        40.0f,
+                                        40.0f);
+    self.locationBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    self.locationBtn.backgroundColor = [UIColor colorWithRed:234.0f / 255.0f
+                                                       green:234.0f / 255.0f
+                                                        blue:234.0f / 255.0f
+                                                       alpha:1.0f];
+    self.locationBtn.layer.cornerRadius = 3.0f;
+    [self.locationBtn addTarget:self action:@selector(backLocationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
+    [self.locationBtn setImage:self.imageLocated forState:UIControlStateNormal];
+    
+    [self.view addSubview:self.locationBtn];
+}
+
+- (void)redWaterAnimimate {
+    
+    [UIView animateWithDuration:0.5f delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        
+        CGPoint center = self.redWaterView.center;
+        center.y -= 20;
+        [self.redWaterView setCenter:center];
+        
+    } completion:nil];
+    
+    [UIView animateWithDuration:0.45f delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+        CGPoint center = self.redWaterView.center;
+        center.y += 20;
+        [self.redWaterView setCenter:center];
+        
+    } completion:nil];
 }
 
 - (NSMutableArray *)locationArray {
@@ -137,13 +206,13 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         
         [self.view addSubview:self.mapView];
         
-        [self.view bringSubviewToFront:self.backLocationBtn];
+//        [self.view bringSubviewToFront:self.backLocationBtn];
     }
     
-    if (!self.iconView) {
-        
-        [self.view addSubview:self.iconView];
-    }
+//    if (!self.iconView) {
+//        
+//        [self.view addSubview:self.iconView];
+//    }
 }
 
 - (void)viewDidLoad {
@@ -152,9 +221,9 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     
     [self.view addSubview:self.mapView];
     
-    [self.view bringSubviewToFront:self.backLocationBtn];
-    
-    [self.view addSubview:self.iconView];
+//    [self.view bringSubviewToFront:self.backLocationBtn];
+//    
+//    [self.view addSubview:self.iconView];
     
     [self setupMainUI];
 }
@@ -172,14 +241,30 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
                                                                              action:@selector(rightBtnClicked)];
     
     self.tableViewTopC.constant = MAP_VIEW_HEIGHT + 64.0f;
+    
+    [self initRedWaterView];
+    
+    [self initLocationButton];
 }
 
 /**
  *  back to location position
  */
-- (IBAction)backLocationBtnClicked {
+- (void)backLocationBtnClicked {
     
-    
+    if (self.mapView.userTrackingMode == MAUserTrackingModeFollow) {
+        
+        [self.mapView setUserTrackingMode:MAUserTrackingModeNone animated:YES];
+        
+    } else {
+        
+        [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            
+            [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
+        });
+    }
 }
 
 - (void)leftBtnClicked {
@@ -328,7 +413,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     ? UITableViewCellAccessoryDisclosureIndicator
     : UITableViewCellAccessoryNone;
     
-    cell.textLabel.text = self.dataArray[indexPath.section];
+    cell.textLabel.text = [self noNullString:self.dataArray[indexPath.section]];
     
     return cell;
 }
@@ -357,6 +442,16 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     return 10.0f;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 1) {
+        
+        
+    }
+}
+
 #pragma mark - MAMapView 代理
 
 - (void)mapView:(MAMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
@@ -376,6 +471,20 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 //    [self nearWithCoordinate:self.centerCoordinate];
     
     [self reGoecodeSearchWithCoordinate:self.centerCoordinate];
+    
+    [self redWaterAnimimate];
+}
+
+- (void)mapView:(MAMapView *)mapView  didChangeUserTrackingMode:(MAUserTrackingMode)mode animated:(BOOL)animated {
+    
+    if (mode == MAUserTrackingModeNone) {
+        
+        [self.locationBtn setImage:self.imageNotLocate forState:UIControlStateNormal];
+        
+    } else {
+        
+        [self.locationBtn setImage:self.imageLocated forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - AMapSearch 代理
@@ -403,7 +512,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         
         self.locationed = YES;
         self.locationCN = response.regeocode.formattedAddress;
-        self.locationLabel.text = self.locationCN;
+        self.locationLabel.text = [self noNullString:self.locationCN];
         
         [self.tableView reloadData];
         
@@ -415,6 +524,18 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 //                            response.regeocode.pois];
 //        LCLog(@"\n%@", result);
         
+    }
+}
+
+- (NSString *)noNullString:(NSString *)string {
+    
+    if (string.length > 0 && ![string isEqualToString:@"(null)"]) {
+        
+        return string;
+        
+    } else {
+        
+        return @"";
     }
 }
 
