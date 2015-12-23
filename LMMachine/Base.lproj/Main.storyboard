@@ -122,6 +122,7 @@
                         <outlet property="backLocationBtn" destination="e6Q-gy-nJJ" id="27p-ZK-nmH"/>
                         <outlet property="locationLabel" destination="fO9-3t-9NV" id="jUe-1L-aiZ"/>
                         <outlet property="tableView" destination="7TW-Ko-Ozy" id="QJs-DB-rak"/>
+                        <outlet property="tableViewTopC" destination="rhu-zB-PA8" id="Tfg-sL-bsB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ee-kT-cBK" userLabel="First Responder" sceneMemberID="firstResponder"/>

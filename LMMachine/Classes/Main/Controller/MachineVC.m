@@ -15,12 +15,15 @@
 #import "JGProgressHUD+LC.h"
 #import "GlobalData.h"
 
+#define MAP_VIEW_HEIGHT (320.0f * (SCREEN_H - 64.0f) / 603.0f)
+
 // x lng
 // y lag
 typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 
 @interface MachineVC () <MAMapViewDelegate, AMapSearchDelegate, UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopC;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *backLocationBtn;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -68,7 +71,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     if (!_mapView) {
         
         CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
-        CGFloat mapViewH = 320.0f;
+        CGFloat mapViewH = MAP_VIEW_HEIGHT;
         
         _mapView = [[MAMapView alloc] initWithFrame:CGRectMake(0, 64.0f, mapViewW, mapViewH)];
         _mapView.delegate = self;
@@ -99,7 +102,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     if (!_iconView) {
         
         CGFloat mapViewW = CGRectGetWidth(self.view.bounds);
-        CGFloat mapViewH = 320.0f;
+        CGFloat mapViewH = MAP_VIEW_HEIGHT;
         
         UIImageView *iconView = [[UIImageView alloc] init];
         iconView.image = [UIImage imageNamed:@"myRedPin"];
@@ -167,8 +170,16 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
                                                                               style:UIBarButtonItemStyleDone
                                                                              target:self
                                                                              action:@selector(rightBtnClicked)];
+    
+    self.tableViewTopC.constant = MAP_VIEW_HEIGHT + 64.0f;
 }
+
+/**
+ *  back to location position
+ */
 - (IBAction)backLocationBtnClicked {
+    
+    
 }
 
 - (void)leftBtnClicked {
