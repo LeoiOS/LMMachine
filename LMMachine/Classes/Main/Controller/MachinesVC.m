@@ -117,7 +117,7 @@
         MachineVC *machineVC = segue.destinationViewController;
         machineVC.title = machineId.length > 0 ? machineId : @"无 ID 考勤机";
         machineVC.machineId = machineId;
-        machineVC.distance = [[(MachineModel *)sender machineDistance] longLongValue];
+        machineVC.distance = (long)[[(MachineModel *)sender machineDistance] intValue];
     }
 }
 
@@ -144,6 +144,7 @@
     
     NSString *machineId = [self.machines[indexPath.row] machineId];
     cell.textLabel.text = machineId.length > 0 ? machineId : @"无 ID 考勤机";
+    cell.textLabel.font = [UIFont systemFontOfSize:17.0f];
     
     return cell;
 }

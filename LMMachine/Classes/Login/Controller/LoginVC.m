@@ -106,7 +106,7 @@
             
             [UIApplication sharedApplication].keyWindow.rootViewController = [UIStoryboard storyboardWithName:@"Main" bundle:nil].instantiateInitialViewController;
             
-            [JGProgressHUD showSuccessHUD:@"登录成功"];
+//            [JGProgressHUD showSuccessHUD:@"登录成功"];
             
             [GlobalData sharedData].companyKey = responseObject[@"data"][@"companyKey"];
             [GlobalData sharedData].userName = self.userNameField.text;
@@ -116,9 +116,9 @@
         
         LCLog(@"%@", error);
         
-        [self.loadingHUD dismissWithAnimation:YES];
+        [self.loadingHUD dismissWithAnimation:NO];
         
-        [JGProgressHUD showFailureHUD:@"登录失败"];
+        [JGProgressHUD showFailureChangHUD:@"请检查网络连接"];
     }];
 }
 

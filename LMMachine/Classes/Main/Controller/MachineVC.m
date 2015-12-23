@@ -153,13 +153,19 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
                                         40.0f,
                                         40.0f);
     self.locationBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    self.locationBtn.backgroundColor = [UIColor colorWithRed:234.0f / 255.0f
-                                                       green:234.0f / 255.0f
-                                                        blue:234.0f / 255.0f
+    self.locationBtn.backgroundColor = [UIColor colorWithRed:250.0f / 255.0f
+                                                       green:250.0f / 255.0f
+                                                        blue:250.0f / 255.0f
                                                        alpha:1.0f];
     self.locationBtn.layer.cornerRadius = 3.0f;
+    
+    self.locationBtn.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.locationBtn.layer.shadowOffset = CGSizeZero;
+    self.locationBtn.layer.shadowOpacity = 0.3f;
+    self.locationBtn.layer.shadowRadius = 3.0f;
+    
     [self.locationBtn addTarget:self action:@selector(backLocationBtnClicked) forControlEvents:UIControlEventTouchUpInside];
-    [self.locationBtn setImage:self.imageLocated forState:UIControlStateNormal];
+    [self.locationBtn setImage:self.imageNotLocate forState:UIControlStateNormal];
     
     [self.view addSubview:self.locationBtn];
 }
@@ -260,7 +266,9 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         
         [self.mapView setCenterCoordinate:self.mapView.userLocation.coordinate animated:YES];
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.5f * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            
+            [self.mapView setZoomLevel:16.5f animated:YES];
             
             [self.mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
         });
