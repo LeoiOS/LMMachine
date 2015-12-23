@@ -90,9 +90,9 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
         [_mapView setZoomLevel:16.5f animated:YES];
         
-        MAUserLocationRepresentation *userLR = [[MAUserLocationRepresentation alloc] init];
-        userLR.showsAccuracyRing = NO;
-        [_mapView updateUserLocationRepresentation:userLR];
+//        MAUserLocationRepresentation *userLR = [[MAUserLocationRepresentation alloc] init];
+//        userLR.showsAccuracyRing = NO;
+//        [_mapView updateUserLocationRepresentation:userLR];
     }
     
     return _mapView;
@@ -195,7 +195,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
 - (NSArray *)dataArray {
     
     return @[[NSString stringWithFormat:@"%@", self.locationCN],
-             [NSString stringWithFormat:@"%ld", self.distance]];
+             [NSString stringWithFormat:@"%ld m", self.distance]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
