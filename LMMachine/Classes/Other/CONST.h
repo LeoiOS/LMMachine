@@ -12,7 +12,7 @@
 
 
 // 主机接口
-#define ENV 10
+#define ENV 100
 
 #if ENV == 100  // 生产服务器
 #define HOST    @"http://yun.lanmengkeji.com/mobile"
