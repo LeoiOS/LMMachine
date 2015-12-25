@@ -86,7 +86,7 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
         _mapView.showsUserLocation = YES;
         _mapView.showsCompass = NO;
         _mapView.showsScale = NO;
-        _mapView.logoCenter = CGPointMake(CGRectGetWidth(_mapView.bounds) - 36.0f, 310.0f);
+        _mapView.logoCenter = CGPointMake(mapViewW - 36.0f, mapViewH - 15.0f);
         [_mapView setUserTrackingMode:MAUserTrackingModeFollow animated:YES];
         [_mapView setZoomLevel:16.5f animated:YES];
         
@@ -148,8 +148,8 @@ typedef void(^ConvertBlock)(BOOL success, NSString *x, NSString *y);
     self.imageNotLocate = [UIImage imageNamed:@"gpsnormal"];
     
     self.locationBtn = [[UIButton alloc] init];
-    self.locationBtn.frame = CGRectMake(MAP_VIEW_WIDTH * 0.07f,
-                                        MAP_VIEW_HEIGHT * 0.8f + 64.0f,
+    self.locationBtn.frame = CGRectMake(20.0f,
+                                        MAP_VIEW_HEIGHT + 64.0f - (20.0f + 40.0f),
                                         40.0f,
                                         40.0f);
     self.locationBtn.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
